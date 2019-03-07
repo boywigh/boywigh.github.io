@@ -31,7 +31,11 @@ history.pushState(null, null, '?'+url);
 }
 </script>
 <body bgcolor="#eeeeee">
-<div class="w3-container w3-teal" style="position:sticky;width: 100%;z-index: 99;">
+<div class="w3-container w3-teal" style="position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: green;
+  border: 2px solid #4CAF50;">
 	<h1 onclick="document.title='boywigh';">A boywigh's Site</h1>
 </div>
 <div class="w3-content">
