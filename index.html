@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<title id='title'>boywigh</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="stylesheet/w3.css">
+<script>
+function toggle(dd) {
+  var x = document.getElementById(dd);
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+function loadf(dd,kk){
+var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            document.getElementById(dd).innerHTML = xhr.responseText;
+        }
+    }
+    xhr.open('GET', kk);
+    xhr.send();
+}
+function changeContent(ffile,ttitle){
+	loadf('content',ffile);
+	//toggle('ameetmenu');
+	document.title=ttitle;
+	var stateObj = { index: "bar" };
+history.pushState(stateObj, "page 2", "bar.html");
+}
+</script>
+<body bgcolor="#eeeeee">
+<div class="w3-container w3-teal">
+	<h1 onclick="document.title='boywigh';">A boywigh's Site</h1>
+</div>
+<div class="w3-content">
+	<button class="w3-button w3-red" onclick="document.title=
+	'A Meeting | boywigh';toggle('ameetmenu');">A Meeting</button> 
+	<div id="ameetmenu" class="w3-card w3-green w3-display-container" 
+	style="display:none">
+		<span onclick="this.parentElement.style.display='none'"
+			class="w3-button w3-red w3-display-topright">x</span>
+		<span class="w3-button" onclick="changeContent('doc/chap1.txt',
+			'Chapter 1 : A Meeting | boywigh');">Chapter 1</span>
+		<span class="w3-button" onclick="loadf('content','doc/chap2.txt');
+			toggle('ameetmenu');document.title=
+			'Chapter 2 : A Meeting | boywigh';">Chapter 2</span>
+		<span class="w3-button" onclick="loadf('content','doc/chap3.txt');
+			toggle('ameetmenu');document.title=
+			'Chapter 3 : A Meeting | boywigh';">Chapter 3</span>
+	</div>
+	<div class="w3-container w3-leftbar w3-border-blue w3-pale-blue">
+	<div>
+		<h3 id="content"></h3>
+	</div>
+	</div>
+</div>
+
+</body>
+</html> 
