@@ -2,7 +2,7 @@
 <html>
 <title id='title'>boywigh</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="stylesheet/w3.css">
+<!-- link rel="stylesheet" href="stylesheet/w3.css" -->
 <script>
 function toggle(dd) {
   var x = document.getElementById(dd);
@@ -13,14 +13,31 @@ function toggle(dd) {
   }
 }
 function loadf(dd,kk){
-var xhr = new XMLHttpRequest();
+ /*var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             document.getElementById(dd).innerHTML = xhr.responseText;
         }
     }
     xhr.open('GET', kk);
-    xhr.send();
+    xhr.send();*/
+    fetch(kk)
+  .then(
+    function(response) {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+          response.status);
+        return;
+      }
+
+      response.json().then(function(data) {
+        document.getElementById(dd).innerHTML = data;
+      });
+    }
+  )
+  .catch(function(err) {
+    console.log('Fetch Error :-S', err);
+  });
 }
 function changeContent(ffile,ttitle,url){
 	loadf('content',ffile);
