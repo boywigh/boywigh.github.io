@@ -2,7 +2,8 @@
 <html>
 <title id='title'>boywigh</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- link rel="stylesheet" href="stylesheet/w3.css" -->
+<meta charset="UTF-8"> 
+<link rel="stylesheet" href="stylesheet/w3.css">
 <script>
 function toggle(dd) {
   var x = document.getElementById(dd);
@@ -21,27 +22,16 @@ function loadf(dd,kk){
     }
     xhr.open('GET', kk);
     xhr.send();*/
-    fetch(kk)
-  .then(
-    function(response) {
-      if (response.status !== 200) {
-        console.log('Looks like there was a problem. Status Code: ' +
-          response.status);
-        return;
-      }
-
-      .then(function(data) {
-        document.getElementById(dd).innerHTML = data;
-      });
-    }
-  );
-  .catch(function(err) {
-    console.log('Fetch Error :-S', err);
+    var myRequest = new Request(kk);
+	fetch(myRequest).then(function(response) {
+		return response.text().then(function(text) {
+		document.getElementById(dd).innerHTML = text;
+    });
   });
 }
 function changeContent(ffile,ttitle,url){
 	loadf('content',ffile);
-	//toggle('ameetmenu');
+	toggle('ameetmenu');
 	document.title=ttitle;
 	//var stateObj = { index: "bar" };
 history.pushState(null, null, '?'+url);
@@ -53,12 +43,25 @@ history.pushState(null, null, '?'+url);
   position: sticky;
   top: 0;
   background-color: green;
-  border: 2px solid #4CAF50;">
-	<h1 onclick="document.title='boywigh';">A boywigh's Site</h1>
-	<button class="w3-button w3-red" onclick="document.title=
+  border: 0px solid #4CAF50;">
+  <div style = "width : 30%;
+				float:left;
+				text-align:right;
+				padding:0px 0px 0px 0px;">
+	<p onclick="document.title='boywigh';"
+		style = "font-size:2vw;
+		padding-top:0px;
+		margin-top: 0px;
+		margin-bottom: 0px;
+		margin-right : 20px;">A boywigh's Site</p></div>
+	<div  style = "width : 70%;">
+		<button class="w3-button w3-red" onclick="document.title=
 	'A Meeting | boywigh';toggle('ameetmenu');">A Meeting</button> 
+	</div>
 	<div id="ameetmenu" class="w3-card w3-green w3-display-container" 
-	style="display:none">
+	style="display:none; width: 70%;
+			float:right;
+				text-align:left">
 		<span onclick="this.parentElement.style.display='none'"
 			class="w3-button w3-red w3-display-topright">x</span>
 		<span class="w3-button" onclick="changeContent('doc/chap1.txt',
@@ -72,7 +75,7 @@ history.pushState(null, null, '?'+url);
 <div class="w3-content">
 	<div class="w3-container w3-leftbar w3-border-blue w3-pale-blue">
 	<div>
-		<h3 id="content"></h3>
+		<p id="content"></h3>
 	</div>
 	</div>
 </div>
