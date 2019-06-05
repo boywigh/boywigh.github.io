@@ -34,7 +34,7 @@ function changeContent(ffile,ttitle,url){
 	toggle('ameetmenu');
 	document.title=ttitle;
 	//var stateObj = { index: "bar" };
-history.pushState(null, null, '?'+url);
+history.pushState(null, null, url);
 }
 </script>
 <body bgcolor="#eeeeee">
@@ -55,8 +55,8 @@ history.pushState(null, null, '?'+url);
 		margin-bottom: 0px;
 		margin-right : 20px;">A boywigh's Site</p></div>
 	<div  style = "width : 70%;">
-		<button class="w3-button w3-red" onclick="document.title=
-	'A Meeting | boywigh';toggle('ameetmenu');">A Meeting</button> 
+		<button class="w3-button w3-red" onclick="changeContent('',
+			'A Meeting','ameeting');">A Meeting</button> 
 	</div>
 	<div id="ameetmenu" class="w3-card w3-green w3-display-container" 
 	style="display:none; width: 70%;
@@ -65,11 +65,11 @@ history.pushState(null, null, '?'+url);
 		<span onclick="this.parentElement.style.display='none'"
 			class="w3-button w3-red w3-display-topright">x</span>
 		<span class="w3-button" onclick="changeContent('doc/chap1.txt',
-			'Chapter 1 : A Meeting | boywigh','chap=1');">Chapter 1</span>
+			'Chapter 1 : A Meeting | boywigh','?chap=1');">Chapter 1</span>
 		<span class="w3-button" onclick="changeContent('doc/chap2.txt',
-			'Chapter 2 : A Meeting | boywigh','chap=2');">Chapter 2</span>
+			'Chapter 2 : A Meeting | boywigh','?chap=2');">Chapter 2</span>
 		<span class="w3-button" onclick="changeContent('doc/chap3.txt',
-			'Chapter 3 : A Meeting | boywigh','chap=3');">Chapter 3</span>
+			'Chapter 3 : A Meeting | boywigh','?chap=3');">Chapter 3</span>
 	</div>
 </div>
 <div class="w3-content">
